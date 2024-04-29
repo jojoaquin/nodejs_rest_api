@@ -19,7 +19,7 @@ const authMiddleware = async (req, res, next) => {
 
         if (!user) {
             res.status(404).send({
-                error: "User is not found with this token"
+                error: "User not found with this token"
             })
         } else {
             if (user.expired_at <= Date.now()) {
