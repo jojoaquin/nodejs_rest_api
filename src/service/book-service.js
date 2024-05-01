@@ -4,6 +4,7 @@ import {createSchema} from "../schema/book-schema.js";
 import ErrorResponse from "../error/error-response.js";
 import moment from "moment";
 import * as fs from "node:fs/promises";
+import {request} from "express";
 
 const isTitleUsed = async (bookRequest) => {
     const book = await prismaClient.book.findFirst({
@@ -65,7 +66,25 @@ const create = async (request, imgFile) => {
 
 }
 
+const getAll = async (page) => {
+    const totalCount = await prismaClient.book.count()
+    const totalPage = Math.ceil(totalCount / 10)
+
+    if(page) {
+        return [await prismaClient.book.findMany({
+            skip: (page - 1) * 10,
+            take: 10
+        }), totalPage]
+    } else {
+        return [await prismaClient.book.findMany({
+            skip: 0,
+            take: 10
+        }), totalPage]
+    }
+}
+
 
 export default {
-    create
+    create,
+    getAll
 }

@@ -12,6 +12,21 @@ const create = async (req, res, next) => {
     }
 }
 
+const getAllBooks = async (req, res, next) => {
+    try {
+        const [books, totalPage] = await bookService.getAll(req.query.page)
+
+        res.status(200).send({
+            data: books,
+            totalPages: totalPage,
+            limit: 10
+        })
+    } catch (e) {
+        next(e)
+    }
+}
+
 export default {
-    create
+    create,
+    getAllBooks
 }
