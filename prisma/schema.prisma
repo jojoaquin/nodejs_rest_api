@@ -20,6 +20,21 @@ model User {
   password   String  @db.VarChar(100)
   token      String? @db.VarChar(100)
   expired_at BigInt? @db.BigInt
+  books      Book[]
 
   @@map("users")
+}
+
+model Book {
+  id           String   @id @default(cuid()) @db.VarChar(100)
+  image        String   @db.VarChar(100)
+  title        String   @db.VarChar(100)
+  author       String   @db.VarChar(100)
+  description  String?  @db.Text
+  pages        Int      @db.Int
+  releasedDate DateTime @map("released_date") @db.DateTime()
+  user_id      String?  @db.VarChar(100)
+  user         User?    @relation(fields: [user_id], references: [id])
+
+  @@map("books")
 }

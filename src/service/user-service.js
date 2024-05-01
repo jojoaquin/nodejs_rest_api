@@ -1,5 +1,5 @@
-import validate from "../validation/validation.js";
-import {loginSchema, registerSchema} from "../validation/user-validation.js";
+import validate from "../schema/validation.js";
+import {loginSchema, registerSchema} from "../schema/user-schema.js";
 import {prismaClient} from "../application/database.js";
 import ErrorResponse from "../error/error-response.js";
 import bcrypt from "bcrypt"
