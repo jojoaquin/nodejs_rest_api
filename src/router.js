@@ -14,6 +14,7 @@ publicRouter.post("/login", userController.login)
 
 const userRouter = express.Router()
 userRouter.use(authMiddleware)
+userRouter.use(express.urlencoded({extended: false}))
 userRouter.use(expressFileUpload())
 
 userRouter.get("/king", kong)
