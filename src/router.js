@@ -22,6 +22,10 @@ userRouter.get("/king", kong)
 
 userRouter.post("/create-book", bookController.create)
 userRouter.get("/books", bookController.getAllBooks)
+userRouter.delete("/delete-book/:bookId", bookController.deleteById)
+userRouter.put("/update-book/:bookId", bookController.updateById)
+userRouter.get("/book/:bookId", bookController.getById)
+userRouter.put("/update-book/image/:bookId", bookController.updateImageById)
 
 export {
     publicRouter,

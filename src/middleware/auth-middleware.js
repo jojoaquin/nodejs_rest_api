@@ -27,7 +27,6 @@ const authMiddleware = async (req, res, next) => {
                     error: "Token is expired"
                 })
             }
-
             next()
         }
     }
