@@ -17,4 +17,19 @@ describe('Rest API', () => {
             data: arr
         })
     });
+
+    it('should get user', async () => {
+        const user = await prismaClient.user.findFirst({
+            where: {
+                 token: {
+                     not: null
+                 }
+            },
+            include: {
+                books: true
+            }
+        })
+
+        console.info(user.books)
+    });
 });

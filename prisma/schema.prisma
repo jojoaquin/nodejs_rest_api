@@ -26,15 +26,16 @@ model User {
 }
 
 model Book {
-  id           String   @id @default(cuid()) @db.VarChar(100)
-  image        String   @db.VarChar(100)
-  title        String   @db.VarChar(100)
-  author       String   @db.VarChar(100)
-  description  String?  @db.Text
-  pages        Int      @db.Int
-  releasedDate DateTime @map("released_date") @db.DateTime()
-  user_id      String?  @db.VarChar(100)
-  user         User?    @relation(fields: [user_id], references: [id])
+  id             String    @id @default(cuid()) @db.VarChar(100)
+  userId         String?   @map("user_id") @db.VarChar(100)
+  lastBorrowedAt DateTime? @map("last_borrowed_at") @db.DateTime()
+  image          String    @db.VarChar(100)
+  title          String    @db.VarChar(100)
+  author         String    @db.VarChar(100)
+  description    String?   @db.Text
+  pages          Int       @db.Int
+  releasedDate   DateTime  @map("released_date") @db.DateTime()
+  user           User?     @relation(fields: [userId], references: [id])
 
   @@map("books")
 }

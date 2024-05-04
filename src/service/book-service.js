@@ -30,7 +30,6 @@ const imageValidation = (imgFile) => {
     }
     const imgExt = imgFile.image.name.split(".")
     const allowedExt = ["jpg", "png", "jpeg"]
-    console.info(imgExt[imgExt.length - 1])
     if(!allowedExt.includes(imgExt[imgExt.length - 1])) {
         throw new ErrorResponse(400, "Image extension must be jpg | png | jpeg")
     }
@@ -194,5 +193,6 @@ export default {
     deleteById,
     updateById,
     getById,
-    updateImageById
+    updateImageById,
+    getRightDate
 }
